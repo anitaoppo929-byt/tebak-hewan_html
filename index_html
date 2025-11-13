@@ -1,119 +1,22 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<title>Tantangan Tebak Hewan</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#fbc2eb,#a6c1ee);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-.container {
-    background: #fff;
-    padding: 20px 30px;
-    border-radius: 20px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    text-align: center;
-    width: 400px;
-}
-h1 { color: #333; }
-.animal-img { width: 150px; border-radius: 12px; filter: blur(15px); transition: 0.3s; margin:10px; }
-.animal-img.revealed { filter: blur(0); }
-input { padding: 10px; width: 180px; text-align: center; border-radius: 8px; border: 2px solid #ccc; margin: 5px; }
-button { padding: 10px 20px; margin: 5px; border-radius: 8px; cursor: pointer; }
-#gameOver { display: none; color: red; font-weight: bold; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tebak Hewan</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div class="container">
+        <h1>Tebak Hewan</h1>
+        <p id="petunjuk">Petunjuk: Hewan ini memiliki belalai.</p>
 
-<div class="container" id="gameContainer">
-    <h1>Tantangan Tebak Hewan</h1>
-    <div>
-        <img id="animal1" class="animal-img" src="" alt="Hewan 1">
-        <img id="animal2" class="animal-img" src="" alt="Hewan 2">
+        <input type="text" id="jawaban" placeholder="Masukkan jawabanmu">
+        <button onclick="cekJawaban()">Cek Jawaban</button>
+
+        <p id="hasil"></p>
     </div>
-    <input type="text" id="guessInput" placeholder="Tebak nama hewan...">
-    <button onclick="checkGuess()">Tebak!</button>
-    <p id="result"></p>
-    <button onclick="nextLevel()">Level Berikutnya</button>
-</div>
 
-<div class="container" id="gameOver">
-    <h1>Game Selesai!</h1>
-    <button onclick="restartGame()">Main Lagi</button>
-</div>
-
-<script>
-const animals = [
-    {name:"kucing", src:"images/kucing.jpg"},
-    {name:"anjing", src:"images/anjing.jpg"},
-    {name:"gajah", src:"images/gajah.jpg"},
-    {name:"singa", src:"images/singa.jpg"},
-    {name:"kelinci", src:"images/kelinci.jpg"},
-    {name:"zebra", src:"images/zebra.jpg"},
-    {name:"panda", src:"images/panda.jpg"}
-];
-
-let level = 0;
-let currentAnimals = [];
-
-const animal1 = document.getElementById('animal1');
-const animal2 = document.getElementById('animal2');
-const guessInput = document.getElementById('guessInput');
-const result = document.getElementById('result');
-const gameContainer = document.getElementById('gameContainer');
-const gameOver = document.getElementById('gameOver');
-
-function startLevel(){
-    if(level >= Math.floor(animals.length/2)){
-        gameContainer.style.display = 'none';
-        gameOver.style.display = 'block';
-        return;
-    }
-    currentAnimals = animals.slice(level*2, level*2+2);
-    animal1.src = currentAnimals[0].src;
-    animal2.src = currentAnimals[1].src;
-    animal1.classList.remove('revealed');
-    animal2.classList.remove('revealed');
-    guessInput.value = '';
-    result.textContent = '';
-}
-
-function checkGuess(){
-    const guess = guessInput.value.toLowerCase();
-    let correct = false;
-    currentAnimals.forEach((a,i)=>{
-        const img = i===0 ? animal1 : animal2;
-        if(guess === a.name){
-            img.classList.add('revealed');
-            correct = true;
-        }
-    });
-    result.textContent = correct ? "Benar!" : "Salah, coba lagi.";
-}
-
-function nextLevel(){
-    if(animal1.classList.contains('revealed') && animal2.classList.contains('revealed')){
-        level++;
-        startLevel();
-    } else {
-        alert("Tebak semua hewan dulu!");
-    }
-}
-
-function restartGame(){
-    level=0;
-    gameOver.style.display='none';
-    gameContainer.style.display='block';
-    startLevel();
-}
-
-startLevel();
-</script>
+    <script src="script.js"></script>
 </body>
 </html>
