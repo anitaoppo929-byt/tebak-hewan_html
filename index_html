@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tantangan Game</title>
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        height: 100%;
+        overflow: hidden;
+        background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hidden { display: none; }
+
+    .menu-container, .game-container {
+        text-align: center;
+        background: rgba(255, 255, 255, 0.2);
+        padding: 50px;
+        border-radius: 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        backdrop-filter: blur(10px);
+        animation: fadeIn 1s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        0% { opacity: 0; transform: translateY(-30px);}
+        100% { opacity: 1; transform: translateY(0);}
+    }
+
+    h1 { font-size: 3em; color: #fff; margin-bottom: 40px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
+
+    .btn {
+        display: block;
+        width: 200px;
+        margin: 20px auto;
+        padding: 15px 0;
+        font-size: 1.2em;
+        color: #fff;
+        background: linear-gradient(135deg, #6a11cb, #2575fc);
+        border: none;
+        border-radius: 50px;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
+    /* Background partikel */
+    .background-particle {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255,255,255,0.3);
+        border-radius: 50%;
+        animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(100vh) translateX(0);}
+        100% { transform: translateY(-50px) translateX(100px);}
+    }
+</style>
+</head>
+<body>
+
+<!-- Partikel background -->
+<div class="background-particle" style="left: 10%; animation-duration: 6s;"></div>
+<div class="background-particle" style="left: 30%; animation-duration: 8s;"></div>
+<div class="background-particle" style="left: 60%; animation-duration: 7s;"></div>
+<div class="background-particle" style="left: 80%; animation-duration: 5s;"></div>
+
+<!-- Menu Utama -->
+<div class="menu-container" id="menu">
+    <h1>Tantangan</h1>
+    <button class="btn" onclick="startGame()">Mulai</button>
+    <button class="btn" onclick="showInstructions()">Petunjuk</button>
+</div>
+
+<!-- Halaman Game -->
+<div class="game-container hidden" id="game">
+    <h1>Permainan Dimulai!</h1>
+    <p>Ini adalah tampilan game. Nanti kamu bisa tambahkan level, koin, atau tebakan hewan di sini.</p>
+    <button class="btn" onclick="backToMenu()">Kembali ke Menu</button>
+</div>
+
+<script>
+    function startGame() {
+        document.getElementById('menu').classList.add('hidden');
+        document.getElementById('game').classList.remove('hidden');
+    }
+
+    function backToMenu() {
+        document.getElementById('game').classList.add('hidden');
+        document.getElementById('menu').classList.remove('hidden');
+    }
+
+    function showInstructions() {
+        alert("Cara Bermain:\n1. Tebak hewan/angka.\n2. Gunakan petunjuk jika bingung.\n3. Kumpulkan poin dan selesaikan level!");
+    }
+</script>
+
+</body>
+</html>
