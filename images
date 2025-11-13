@@ -1,12 +1,1 @@
-const allAnimals = [
-    {name: "kucing", image: "images/k.JPG"},
-    {name: "anjing", image: "images/A.JPG"},
-    {name: "gajah", image: "images/G.JPG"},
-    {name: "harimau", image: "images/H.JPG"},
-    {name: "singa", image: "images/s.AVIF"},
-    {name: "kelinci", image: "images/K.WEBP"},
-    {name: "jerapah", image: "images/J.JPG"},
-    {name: "zebra", image: "images/Z.JPG"},
-    {name: "kuda", image: "images/D.WEBP"},
-    {name: "panda", image: "images/P.JPG"}
-];
+
