@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Tantangan Tebak Hewan</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Menu Awal -->
+<div class="menu-container" id="menu">
+    <h1>Tantangan</h1>
+    <button class="btn" onclick="startGame()">Mulai</button>
+    <button class="btn" onclick="showInstructions()">Petunjuk</button>
+</div>
+
+<!-- Game -->
+<div id="gameContainer">
+    <div id="levelContainer">
+        <div class="level-circle active">1</div>
+        <div class="level-circle">2</div>
+        <div class="level-circle">3</div>
+    </div>
+    <div id="coinDisplay">Koinmu: 0</div>
+    <button id="clueButton" onclick="buyClue()">Beli Petunjuk (50 koin)</button>
+    <div class="game-container">
+        <h1>🎯 Tantangan Tebak Hewan</h1>
+        <div id="timer">Waktu tersisa: 30 detik</div>
+        <div class="animal-row">
+            <img class="animal-img" id="animal1" src="" alt="Hewan 1">
+            <img class="animal-img" id="animal2" src="" alt="Hewan 2">
+        </div>
+        <input type="text" id="guessInput" placeholder="Masukkan jawabanmu…">
+        <button id="guessButton" class="game-btn" onclick="checkGuess()">Tantang!</button>
+        <p id="result"></p>
+        <button id="resetButton" class="game-btn" onclick="nextLevel()">🔄 Level Berikutnya</button>
+    </div>
+</div>
+
+<!-- Game Over -->
+<div id="gameOver">
+    <h1>⛔ Tantangan Gagal! ⛔</h1>
+    <button onclick="restartGameToMenu()">Kembali ke Menu</button>
+</div>
+
+<!-- Tampilan Selesai -->
+<div id="gameCompleted">
+    <h1>🎉 Selamat! 🎉</h1>
+    <p>Kamu telah menyelesaikan semua level!</p>
+    <p>Total Koin: <span id="finalCoins">0</span></p>
+    <button onclick="restartGameToMenu()">Kembali ke Menu</button>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
