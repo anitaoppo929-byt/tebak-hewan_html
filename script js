@@ -1,0 +1,28 @@
+const hewan = [
+    { nama: "gajah", petunjuk: "Hewan ini memiliki belalai." },
+    { nama: "kucing", petunjuk: "Hewan ini sering menjadi hewan peliharaan, suka mengeong." },
+    { nama: "kelinci", petunjuk: "Hewan ini suka makan wortel dan memiliki telinga panjang." },
+];
+
+let indexHewan = 0;
+
+function cekJawaban() {
+    const jawabanInput = document.getElementById("jawaban").value.toLowerCase();
+    const hasil = document.getElementById("hasil");
+
+    if(jawabanInput === hewan[indexHewan].nama) {
+        hasil.textContent = "Selamat! Jawaban benar 🎉";
+        indexHewan++;
+        if(indexHewan < hewan.length) {
+            document.getElementById("petunjuk").textContent = "Petunjuk: " + hewan[indexHewan].petunjuk;
+            document.getElementById("jawaban").value = "";
+            hasil.textContent += ` Berikutnya!`;
+        } else {
+            hasil.textContent += " Kamu sudah menebak semua hewan!";
+            document.getElementById("petunjuk").textContent = "Permainan selesai!";
+            document.getElementById("jawaban").style.display = "none";
+        }
+    } else {
+        hasil.textContent = "Jawaban salah, coba lagi ❌";
+    }
+}
