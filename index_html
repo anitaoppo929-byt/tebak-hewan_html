@@ -22,9 +22,9 @@ body {
     width: 400px;
 }
 h1 { color: #333; }
-.animal-img { width: 150px; border-radius: 12px; filter: blur(15px); transition: 0.3s; }
+.animal-img { width: 150px; border-radius: 12px; filter: blur(15px); transition: 0.3s; margin:10px; }
 .animal-img.revealed { filter: blur(0); }
-input { padding: 10px; width: 180px; text-align: center; border-radius: 8px; border: 2px solid #ccc; }
+input { padding: 10px; width: 180px; text-align: center; border-radius: 8px; border: 2px solid #ccc; margin: 5px; }
 button { padding: 10px 20px; margin: 5px; border-radius: 8px; cursor: pointer; }
 #gameOver { display: none; color: red; font-weight: bold; }
 </style>
@@ -33,9 +33,10 @@ button { padding: 10px 20px; margin: 5px; border-radius: 8px; cursor: pointer; }
 
 <div class="container" id="gameContainer">
     <h1>Tantangan Tebak Hewan</h1>
-    <img id="animal1" class="animal-img" src="" alt="Hewan 1">
-    <img id="animal2" class="animal-img" src="" alt="Hewan 2">
-    <br>
+    <div>
+        <img id="animal1" class="animal-img" src="" alt="Hewan 1">
+        <img id="animal2" class="animal-img" src="" alt="Hewan 2">
+    </div>
     <input type="text" id="guessInput" placeholder="Tebak nama hewan...">
     <button onclick="checkGuess()">Tebak!</button>
     <p id="result"></p>
@@ -52,7 +53,10 @@ const animals = [
     {name:"kucing", src:"images/kucing.jpg"},
     {name:"anjing", src:"images/anjing.jpg"},
     {name:"gajah", src:"images/gajah.jpg"},
-    {name:"singa", src:"images/singa.jpg"}
+    {name:"singa", src:"images/singa.jpg"},
+    {name:"kelinci", src:"images/kelinci.jpg"},
+    {name:"zebra", src:"images/zebra.jpg"},
+    {name:"panda", src:"images/panda.jpg"}
 ];
 
 let level = 0;
@@ -66,7 +70,7 @@ const gameContainer = document.getElementById('gameContainer');
 const gameOver = document.getElementById('gameOver');
 
 function startLevel(){
-    if(level >= animals.length/2){
+    if(level >= Math.floor(animals.length/2)){
         gameContainer.style.display = 'none';
         gameOver.style.display = 'block';
         return;
@@ -111,96 +115,5 @@ function restartGame(){
 
 startLevel();
 </script>
-</body>
-</html>
-
-    .menu-container, .game-container {
-        text-align: center;
-        background: rgba(255, 255, 255, 0.2);
-        padding: 50px;
-        border-radius: 20px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        backdrop-filter: blur(10px);
-        animation: fadeIn 1s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        0% { opacity: 0; transform: translateY(-30px);}
-        100% { opacity: 1; transform: translateY(0);}
-    }
-
-    h1 { font-size: 3em; color: #fff; margin-bottom: 40px; text-shadow: 2px 2px 5px rgba(0,0,0,0.3); }
-
-    .btn {
-        display: block;
-        width: 200px;
-        margin: 20px auto;
-        padding: 15px 0;
-        font-size: 1.2em;
-        color: #fff;
-        background: linear-gradient(135deg, #6a11cb, #2575fc);
-        border: none;
-        border-radius: 50px;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.2s;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-
-    .btn:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-
-    /* Background partikel */
-    .background-particle {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background: rgba(255,255,255,0.3);
-        border-radius: 50%;
-        animation: float 5s linear infinite;
-    }
-
-    @keyframes float {
-        0% { transform: translateY(100vh) translateX(0);}
-        100% { transform: translateY(-50px) translateX(100px);}
-    }
-</style>
-</head>
-<body>
-
-<!-- Partikel background -->
-<div class="background-particle" style="left: 10%; animation-duration: 6s;"></div>
-<div class="background-particle" style="left: 30%; animation-duration: 8s;"></div>
-<div class="background-particle" style="left: 60%; animation-duration: 7s;"></div>
-<div class="background-particle" style="left: 80%; animation-duration: 5s;"></div>
-
-<!-- Menu Utama -->
-<div class="menu-container" id="menu">
-    <h1>Tantangan</h1>
-    <button class="btn" onclick="startGame()">Mulai</button>
-    <button class="btn" onclick="showInstructions()">Petunjuk</button>
-</div>
-
-<!-- Halaman Game -->
-<div class="game-container hidden" id="game">
-    <h1>Permainan Dimulai!</h1>
-    <p>Ini adalah tampilan game. Nanti kamu bisa tambahkan level, koin, atau tebakan hewan di sini.</p>
-    <button class="btn" onclick="backToMenu()">Kembali ke Menu</button>
-</div>
-
-<script>
-    function startGame() {
-        document.getElementById('menu').classList.add('hidden');
-        document.getElementById('game').classList.remove('hidden');
-    }
-
-    function backToMenu() {
-        document.getElementById('game').classList.add('hidden');
-        document.getElementById('menu').classList.remove('hidden');
-    }
-
-    function showInstructions() {
-        alert("Cara Bermain:\n1. Tebak hewan/angka.\n2. Gunakan petunjuk jika bingung.\n3. Kumpulkan poin dan selesaikan level!");
-    }
-</script>
-
 </body>
 </html>
